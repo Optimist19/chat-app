@@ -1,4 +1,5 @@
-const MyMessage = ({ message, formattedDate }) => {
+const MyMessage = ({ message, formattedDate, chat, activeChat }) => {
+
   // The conditional statement here is if the message.attachments is greater than 0, that means what we are having is an image and not actually a text. So this runs and if it's not an image, the other return runs.
   if (message.attachments && message.attachments.length > 0) {
     return (

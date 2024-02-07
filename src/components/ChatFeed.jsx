@@ -1,7 +1,7 @@
 import MyMessage from "./MyMessage";
 import TheirMessage from "./TheirMessage";
 import MessageForm from "./MessageForm";
-import { useEffect, useState } from "react";
+
 
 const ChatFeed = (props) => {
 
@@ -9,18 +9,8 @@ const ChatFeed = (props) => {
   
   const chat = chats && chats[activeChat];
 
-  const [formattedDate, setFormattedDate] = useState('');
 
   const lastMessageDate = chat?.last_message?.created;
-
-
-  useEffect(() => {
-    if (lastMessageDate) {
-      const date = new Date(lastMessageDate);
-      setFormattedDate(date.toLocaleString());
-    }
-  }, [lastMessageDate]);
-
 
   // console.log(formattedDate);
 
@@ -52,13 +42,13 @@ const ChatFeed = (props) => {
         <div key={`msg_${index}`} style={{ width: "100%" }}>
           <div className="message-block">
             {isMyMessage ? (
-              <MyMessage message={message} formattedDate={formattedDate} chat = {chat}
+              <MyMessage message={message} chat = {chat}
 activeChat = {activeChat} />
             ) : (
               <TheirMessage
                 message={message}
                 lastMessage={messages[lastMessageKey]}
-                formattedDate={formattedDate}
+               chat = {chat}
               />
             )}
           </div>
